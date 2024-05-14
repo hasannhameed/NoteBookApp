@@ -1,0 +1,68 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  overflow: hidden;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-image: url(./trianglify-lowres.png);
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+button {
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.App {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column; /* Arrange items vertically */
+  justify-content: center;
+  align-items: center;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: row; /* Arrange items horizontally */
+}
+
+.clickMe {
+  margin-right: 1rem; /* Add margin between buttons */
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.notes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.note {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.note h3 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.note p {
+  font-size: 1rem;
+}
