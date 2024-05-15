@@ -1,41 +1,24 @@
-import { useState } from "react";
+// App.js
+import React, { Fragment, useContext } from "react";
 import "./App.css";
-import Modal from './Components/Modal.js'
-import { Fragment } from "react";
+import Modal from './Components/Modal';
+import { NotesProvider, NotesContext } from './Components/NoteContext';
 
 const App = () => {
-  const [notes, setNotes] = useState([]);
-  const [headline, setHeadline] = useState("");
-  const [paragraph, setParagraph] = useState("");
-  const [modal, setModal] = useState(false);
-  const [noteCount, setNoteCount] = useState(0); // Initialize note count
-  const [searchQuery, setSearchQuery] = useState(""); // Initialize search query state
-
-  const toggleModal = () => setModal(!modal);
-
-  const addNote = () => {
-    if (headline.trim() !== "" && paragraph.trim() !== "") {
-      const newNote = {
-        id: Date.now(), // Unique id for each note
-        headline: headline,
-        paragraph: paragraph
-      };
-      setNotes([...notes, newNote]);
-      setHeadline("");
-      setParagraph("");
-      setNoteCount(noteCount + 1); // Increment note count by 1
-    }
-  };
-
-  const deleteNote = (id) => {
-    setNotes(notes.filter((note) => note.id !== id));
-  };
-
-  // Filter notes based on search query
-  const filteredNotes = notes.filter((note) => {
-    const searchContent = note.headline.toLowerCase() + note.paragraph.toLowerCase();
-    return searchContent.includes(searchQuery.toLowerCase());
-  });
+  const {
+    notes,
+    headline,
+    paragraph,
+    modal,
+    searchQuery,
+    toggleModal,
+    addNote,
+    deleteNote,
+    setHeadline,
+    setParagraph,
+    setSearchQuery,
+    filteredNotes
+  } = useContext(NotesContext);
 
   return (
     <Fragment>
@@ -80,6 +63,12 @@ const App = () => {
       </div>
     </Fragment>
   );
-}
+};
 
-export default App;
+const WrappedApp = () => (
+  <NotesProvider>
+    <App />
+  </NotesProvider>
+);
+
+export default WrappedApp;
